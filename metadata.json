@@ -1,0 +1,6 @@
+{
+  "name": "MetroPulse Transit Engine",
+  "description": "Civic-grade real-time transit telemetry, live vehicle tracking, arrival boards, and network route engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
