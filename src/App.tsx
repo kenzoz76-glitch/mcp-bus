@@ -10,13 +10,14 @@ import { TelemetryMap } from './components/TelemetryMap';
 import { DiagrammaticSchematicView } from './components/DiagrammaticSchematicView';
 import { TripPlannerView } from './components/TripPlannerView';
 import { AdvisoriesView } from './components/AdvisoriesView';
+import { LtaBusArrivalView } from './components/LtaBusArrivalView';
 import { StationDetailModal } from './components/StationDetailModal';
 import { VehicleDetailModal } from './components/VehicleDetailModal';
 import { STATIONS, TRANSIT_LINES, INITIAL_VEHICLES, SERVICE_ADVISORIES } from './data/transitData';
 import { Station, TransitLine, VehicleTelemetry, ServiceAdvisory } from './types/transit';
 
 export default function App() {
-  const [activeView, setActiveView] = useState<'workstation' | 'schematic' | 'planner' | 'advisories'>('workstation');
+  const [activeView, setActiveView] = useState<'workstation' | 'schematic' | 'planner' | 'advisories' | 'lta-bus'>('workstation');
   const [stations] = useState<Station[]>(STATIONS);
   const [lines, setLines] = useState<TransitLine[]>(TRANSIT_LINES);
   const [vehicles, setVehicles] = useState<VehicleTelemetry[]>(INITIAL_VEHICLES);
@@ -244,6 +245,10 @@ export default function App() {
             lines={lines}
             onAddAdvisory={handleAddAdvisory}
           />
+        )}
+
+        {activeView === 'lta-bus' && (
+          <LtaBusArrivalView />
         )}
       </main>
 

@@ -3,8 +3,8 @@ import { Volume2, VolumeX, ShieldAlert, Sparkles, SlidersHorizontal, RotateCcw }
 import { transitAudio } from '../utils/audioAnnouncer';
 
 interface WorkstationHeaderProps {
-  activeView: 'workstation' | 'schematic' | 'planner' | 'advisories';
-  setActiveView: (view: 'workstation' | 'schematic' | 'planner' | 'advisories') => void;
+  activeView: 'workstation' | 'schematic' | 'planner' | 'advisories' | 'lta-bus';
+  setActiveView: (view: 'workstation' | 'schematic' | 'planner' | 'advisories' | 'lta-bus') => void;
   isMuted: boolean;
   setIsMuted: (muted: boolean) => void;
   highContrast: boolean;
@@ -114,6 +114,20 @@ export const WorkstationHeader: React.FC<WorkstationHeaderProps> = ({
               1 Alert
             </span>
           </button>
+
+          <button
+            onClick={() => setActiveView('lta-bus')}
+            className={`px-3 py-1.5 text-xs xl:text-sm font-semibold rounded transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+              activeView === 'lta-bus'
+                ? 'bg-[#1e40af] text-white shadow-xs'
+                : 'text-[#475569] hover:text-[#0f172a] hover:bg-[#f1f5f9]'
+            }`}
+          >
+            <span>LTA Bus Arrival</span>
+            <span className="px-1.5 py-0.2 bg-[#eff6ff] text-[#1e40af] text-[10px] font-bold rounded">
+              v3 API
+            </span>
+          </button>
         </nav>
 
         {/* Zone 3: 1-2 primary actions */}
@@ -197,6 +211,16 @@ export const WorkstationHeader: React.FC<WorkstationHeaderProps> = ({
           }`}
         >
           Advisories (1)
+        </button>
+        <button
+          onClick={() => setActiveView('lta-bus')}
+          className={`px-2.5 py-1 text-xs font-medium rounded whitespace-nowrap ${
+            activeView === 'lta-bus'
+              ? 'bg-[#1e40af] text-white'
+              : 'text-[#475569] bg-[#f8fafc]'
+          }`}
+        >
+          LTA Bus (v3)
         </button>
       </div>
     </header>
